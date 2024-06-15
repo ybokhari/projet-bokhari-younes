@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { passwordMatchValidator } from '../../../validators/password-match.validator';
-import { first } from 'rxjs';
 
 @Component({
   selector: 'sign-up',

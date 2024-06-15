@@ -17,28 +17,28 @@ export class SignInComponent {
 
   redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/';
 
-  loginForm = this.formBuilder.group({
+  signInForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
 
   onSubmit(): void {
-    if (this.loginForm.invalid) {
+    if (this.signInForm.invalid) {
       return;
     }
 
-    this.authenticationService.signIn(this.loginForm.value).subscribe({
+    this.authenticationService.signIn(this.signInForm.value).subscribe({
       next: () => {
         this.router.navigate([this.redirectUrl]);
       },
       error: (error) => {
-        this.loginForm.setErrors({ wrongCredentials: true });
+        this.signInForm.setErrors({ wrongCredentials: true });
       },
     });
   }
 
   public getErrorMessage(fieldName: string): string | null {
-    const field = fieldName ? this.loginForm.get(fieldName) : this.loginForm;
+    const field = fieldName ? this.signInForm.get(fieldName) : this.signInForm;
 
     if (!field || !field.errors || !field.touched || !field.dirty) {
       return null;
