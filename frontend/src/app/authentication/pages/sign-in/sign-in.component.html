@@ -1,0 +1,26 @@
+<div class="card bg-base-100 shadow-xl sm:min-w-96">
+    <form class="card-body space-y-2" (ngSubmit)="onSubmit()">
+        <header>
+            <h1 class="text-2xl font-bold">Se connecter</h1>
+            @if (getErrorMessage("")) {
+            <small class="text-error">{{ getErrorMessage("") }}</small>
+            }
+        </header>
+
+        <app-input label="Email" type="email" placeholder="johndoe@website.com" [control]="loginForm.controls.email"
+            [errorMessage]="getErrorMessage('email')"></app-input>
+
+        <app-input label="Mot de passe" type="password" placeholder="••••••••" [control]="loginForm.controls.password"
+            [errorMessage]="getErrorMessage('password')"></app-input>
+
+        <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+            Se connecter
+        </button>
+
+        <small class="text-neutral text-center">
+            Vous n'avez pas de compte ?
+            <a class="link-hover link font-medium text-primary" routerLink="/auth/sign-up"
+                [queryParams]="{ redirectUrl: redirectUrl }">Créer un compte</a>
+        </small>
+    </form>
+</div>

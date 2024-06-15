@@ -1,0 +1,37 @@
+<div class="card bg-base-100 shadow-xl sm:min-w-96">
+    <form class="card-body space-y-2" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <h1 class="text-2xl font-bold">Créer un compte</h1>
+
+        <app-input label="Prénom" type="text" placeholder="John" [control]="signUpForm.controls.firstname"
+            [errorMessage]="getErrorMessage('firstname')"></app-input>
+
+        <app-input label="Nom" type="text" placeholder="Doe"
+            [control]="signUpForm.controls.lastname" [errorMessage]="getErrorMessage('lastname')"></app-input>
+
+        <app-input label="Email" type="email" placeholder="johndoe@website.com" [control]="signUpForm.controls.email"
+            [errorMessage]="getErrorMessage('email')"></app-input>
+
+        <app-input label="Mot de passe" type="password" placeholder="••••••••"
+            [control]="signUpForm.controls.password" [errorMessage]="getErrorMessage('password')"></app-input>
+
+        <app-input label="Confirmer mot de passe" type="password" placeholder="••••••••"
+            [control]="signUpForm.controls.confirmPassword"
+            [errorMessage]="getErrorMessage('confirmPassword')"></app-input>
+
+        @if (getErrorMessage("")) {
+        <small class="text-error">{{ getErrorMessage("") }}</small>
+        }
+
+        <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">
+            Créer un compte
+        </button>
+
+        <small class="text-neutral text-center">
+            Vous avez déjà un compte ?
+            <a class="link-hover link font-medium text-primary" routerLink="/auth/sign-in"
+                [queryParams]="{ redirectUrl: redirectUrl }">
+                Se connecter
+            </a>
+        </small>
+    </form>
+</div>
