@@ -20,8 +20,8 @@ export class SignUpComponent {
 
   signUpForm = this.formBuilder.group(
     {
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: [
         '',
@@ -45,7 +45,7 @@ export class SignUpComponent {
 
     this.authenticationService.signUp(this.signUpForm.value).subscribe({
       next: () => {
-        this.router.navigate(['/authentication/sign-in']);
+        this.router.navigate(['/auth/sign-in']);
       },
       error: (error) => {
         this.signUpForm.setErrors({ wrongSignUp: true });

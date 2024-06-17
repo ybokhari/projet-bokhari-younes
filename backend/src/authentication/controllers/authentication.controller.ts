@@ -16,7 +16,7 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LocalAuthenticationGuard } from '../guards/local-authentication.guard';
 import JwtAuthenticationGuard from '../guards/jwt-authentication.guard';
 import JwtRefreshGuard from '../guards/jwt-refresh.guard';
-@Controller('authentication')
+@Controller('auth')
 export class AuthenticationController {
   constructor(
     private authenticationService: AuthenticationService,

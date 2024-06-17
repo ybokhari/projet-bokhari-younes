@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  signUp: '/api/sign-up',
-  signIn: '/api/sign-in',
-  signOut: '/api/sign-out',
+  signUp: '/api/auth/sign-up',
+  signIn: '/api/auth/sign-in',
+  signOut: '/api/auth/sign-out',
 };
