@@ -3,6 +3,7 @@
 /backend/node_modules
 /backend/logs
 /backend/*.log
+/backend/.env
 /backend/npm-debug.log*
 /backend/pnpm-debug.log*
 /backend/yarn-debug.log*
