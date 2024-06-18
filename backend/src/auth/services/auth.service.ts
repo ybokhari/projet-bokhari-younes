@@ -8,7 +8,7 @@ import TokenPayload from '../interfaces/token-payload.interface';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 @Injectable()
-export class AuthenticationService {
+export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
@@ -41,6 +41,7 @@ export class AuthenticationService {
     try {
       const user = await this.usersService.findOneByEmail(email);
       await this.verifyPassword(plainTextPassword, user.password);
+      user.password = undefined;
       return user;
     } catch (error) {
       throw new HttpException(

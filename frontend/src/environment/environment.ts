@@ -1,6 +1,8 @@
 export const environment = {
   production: false,
-  signUp: '/api/auth/sign-up',
-  signIn: '/api/auth/sign-in',
-  signOut: '/api/auth/sign-out',
+  signUp: '/api/sign-up',
+  signIn: '/api/sign-in',
+  getUser: '/api/get-user',
+  refreshToken: '/api/refresh',
+  signOut: '/api/sign-out',
 };

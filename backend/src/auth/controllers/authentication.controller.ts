@@ -3,12 +3,13 @@ import {
   Controller,
   Get,
   HttpCode,
+  ParseIntPipe,
   Post,
   Req,
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthService } from '../services/auth.service';
 import RequestWithUser from '../interfaces/request-with-user-interface';
 import { UsersService } from 'src/users/services/users.service';
 import { Response } from 'express';
@@ -16,10 +17,11 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LocalAuthenticationGuard } from '../guards/local-authentication.guard';
 import JwtAuthenticationGuard from '../guards/jwt-authentication.guard';
 import JwtRefreshGuard from '../guards/jwt-refresh.guard';
-@Controller('auth')
-export class AuthenticationController {
+
+@Controller()
+export class AuthController {
   constructor(
-    private authenticationService: AuthenticationService,
+    private authenticationService: AuthService,
     private readonly usersService: UsersService,
   ) {}
 
@@ -50,7 +52,7 @@ export class AuthenticationController {
   }
 
   @UseGuards(JwtAuthenticationGuard)
-  @Get()
+  @Get('get-user')
   getUser(@Req() request: RequestWithUser) {
     const user = request.user;
     user.password = undefined;
@@ -70,13 +72,12 @@ export class AuthenticationController {
     return request.user;
   }
 
-  @UseGuards(JwtAuthenticationGuard)
   @Post('sign-out')
   async signOut(
-    @Req() request: RequestWithUser,
+    @Body('userId', ParseIntPipe) userId: number,
     @Res() response: Response,
   ): Promise<Response<any, Record<string, any>>> {
-    await this.usersService.removeRefreshToken(request.user.id);
+    await this.usersService.removeRefreshToken(userId);
     response.setHeader(
       'Set-Cookie',
       this.authenticationService.getCookieForSignOut(),

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../../../services/authentication.service';
-import { passwordMatchValidator } from '../../../validators/password-match.validator';
+import { AuthService } from '../../services/auth.service';
+import { passwordMatchValidator } from '../../validators/password-match.validator';
 
 @Component({
   selector: 'sign-up',
@@ -11,7 +11,7 @@ import { passwordMatchValidator } from '../../../validators/password-match.valid
 export class SignUpComponent {
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -43,9 +43,9 @@ export class SignUpComponent {
       return;
     }
 
-    this.authenticationService.signUp(this.signUpForm.value).subscribe({
+    this.authService.signUp(this.signUpForm.value).subscribe({
       next: () => {
-        this.router.navigate(['/auth/sign-in']);
+        this.router.navigate(['/sign-in']);
       },
       error: (error) => {
         this.signUpForm.setErrors({ wrongSignUp: true });

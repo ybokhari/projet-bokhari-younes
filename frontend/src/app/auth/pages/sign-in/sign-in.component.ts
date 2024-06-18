@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthService } from '../../services/auth.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'sign-in',
@@ -10,7 +11,8 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class SignInComponent {
   constructor(
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
+    private storageService: StorageService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -27,9 +29,10 @@ export class SignInComponent {
       return;
     }
 
-    this.authenticationService.signIn(this.signInForm.value).subscribe({
-      next: () => {
-        this.router.navigate([this.redirectUrl]);
+    this.authService.signIn(this.signInForm.value).subscribe({
+      next: (data) => {
+        this.storageService.saveUser(data);
+        this.router.navigate(['/get-user']);
       },
       error: (error) => {
         this.signInForm.setErrors({ wrongCredentials: true });

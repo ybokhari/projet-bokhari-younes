@@ -6,7 +6,7 @@ import { environment } from '../../../environment/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
+export class AuthService {
   constructor(private http: HttpClient) {}
 
   signUp(userData: any): Observable<any> {
@@ -17,7 +17,15 @@ export class AuthenticationService {
     return this.http.post(environment.signIn, userData);
   }
 
-  signOut(): Observable<any> {
-    return this.http.post(environment.signOut, {});
+  getUser(): Observable<any> {
+    return this.http.get(environment.getUser);
+  }
+
+  refreshToken(): Observable<any> {
+    return this.http.get(environment.refreshToken);
+  }
+
+  signOut(userId: number): Observable<any> {
+    return this.http.post(environment.signOut, { userId: userId });
   }
 }

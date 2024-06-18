@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthenticationModule } from './authentication/authentication.module';
+import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
@@ -27,7 +27,7 @@ import * as Joi from 'joi';
         JWT_REFRESH_EXPIRATION_TIME: Joi.string().required(),
       }),
     }),
-    AuthenticationModule,
+    AuthModule,
     UsersModule,
   ],
   controllers: [AppController],
