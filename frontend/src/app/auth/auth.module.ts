@@ -4,10 +4,10 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { provideHttpClient } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { GetUserComponent } from './pages/get-user/get-user.component';
+import { IsAuthenticatedComponent } from './pages/is-authenticated/is-authenticated.component';
 
 @NgModule({
-  declarations: [SignInComponent, SignUpComponent, GetUserComponent],
+  declarations: [SignInComponent, SignUpComponent, IsAuthenticatedComponent],
   imports: [SharedModule, RouterModule],
   providers: [provideHttpClient()],
 })

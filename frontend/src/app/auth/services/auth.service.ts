@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { environment } from '../../../environment/environment';
 
 @Injectable({
@@ -17,8 +17,20 @@ export class AuthService {
     return this.http.post(environment.signIn, userData);
   }
 
-  getUser(): Observable<any> {
-    return this.http.get(environment.getUser);
+  isAuthenticated(): Observable<boolean> {
+    return this.http
+      .get(environment.isAuthenticated, {
+        observe: 'response',
+        responseType: 'text',
+      })
+      .pipe(
+        map((response) => {
+          return response.status == 200;
+        }),
+        catchError((error) => {
+          return of(false);
+        })
+      );
   }
 
   refreshToken(): Observable<any> {

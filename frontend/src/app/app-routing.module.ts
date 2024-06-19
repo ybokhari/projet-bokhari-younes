@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './auth/pages/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/pages/sign-up/sign-up.component';
-import { GetUserComponent } from './auth/pages/get-user/get-user.component';
+import { IsAuthenticatedComponent } from './auth/pages/is-authenticated/is-authenticated.component';
+import { ProductsPageComponent } from './products/pages/products-page/products-page.component';
+import { isAuthenticatedGuard } from './auth/guards/is-authenticated.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'sign-in',
+    redirectTo: 'products',
     pathMatch: 'full',
   },
   {
@@ -19,9 +21,14 @@ const routes: Routes = [
     component: SignUpComponent,
   },
   {
-    path: 'get-user',
-    component: GetUserComponent,
-  }
+    path: 'is-authenticated',
+    component: IsAuthenticatedComponent,
+  },
+  {
+    path: 'products',
+    component: ProductsPageComponent,
+    canActivate: [isAuthenticatedGuard],
+  },
 ];
 
 @NgModule({
