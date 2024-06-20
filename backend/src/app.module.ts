@@ -14,6 +14,7 @@ import { ProductsService } from './products/services/products.service';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'dpg-cpq19e88fa8c739o35k0-a.frankfurt-postgres.render.com',
+      ssl: true,
       port: 5432,
       username: 'ybokhari',
       password: '7hkx8bdDsDDZhp0OO2wdxyiUuEqofPvU',
