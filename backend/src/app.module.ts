@@ -13,7 +13,7 @@ import { ProductsService } from './products/services/products.service';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'postgres://ybokhari:7hkx8bdDsDDZhp0OO2wdxyiUuEqofPvU@dpg-cpq19e88fa8c739o35k0-a/taslim_baby',
       port: 5432,
       username: 'ybokhari',
       password: 'Younes#67',
