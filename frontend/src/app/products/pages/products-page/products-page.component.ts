@@ -10,7 +10,10 @@ import { Product } from '../../models/product';
 export class ProductsPageComponent {
   constructor(private productsService: ProductsService) {}
 
-  products$ = this.productsService.getProducts();
+  refresh$ = new BehaviorSubject(null);
+  products$ = this.refresh$.pipe(
+    switchMap(() => this.productsService.getProducts())
+  );
   productsAdded: Product[] = [];
 
   addToCart(product: Product) {
@@ -21,5 +24,18 @@ export class ProductsPageComponent {
     } else {
       this.productsAdded.push(product);
     }
+  }
+
+  refresh() {
+    this.refresh$.next(null);
+  }
+  filtersProducts() {
+    this.refresh();
+    if (!this.products$) return;
+    this.products$ = this.products$?.filter((product) =>
+      product.name
+        .toLowerCase()
+        .includes(this.searchProduct.value.toLowerCase())
+    );
   }
 }

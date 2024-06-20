@@ -7,6 +7,7 @@ import { ProductsService } from './services/products.service';
 import { AddToCartBtnComponent } from './components/add-to-cart-btn/add-to-cart-btn.component';
 import { CartCardComponent } from './components/cart-card/cart-card.component';
 import { CartListComponent } from './components/cart-list/cart-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { CartListComponent } from './components/cart-list/cart-list.component';
     CartListComponent,
   ],
   providers: [ProductsService],
-  imports: [CommonModule],
+  imports: [CommonModule, SharedModule],
 })
 export class ProductsModule {}
