@@ -8,7 +8,7 @@ export class Product {
   @Column()
   name: string;
 
-  @Column({ type: 'decimal', precision: 5, scale: 2 })
+  @Column({ type: 'int' })
   price: number;
 
   @Column({ type: 'tinytext' })

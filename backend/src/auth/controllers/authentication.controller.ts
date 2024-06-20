@@ -15,8 +15,8 @@ import { UsersService } from 'src/users/services/users.service';
 import { Response } from 'express';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LocalAuthenticationGuard } from '../guards/local-authentication.guard';
-import JwtAuthenticationGuard from '../guards/jwt-authentication.guard';
 import JwtRefreshGuard from '../guards/jwt-refresh.guard';
+import JwtAuthenticationGuard from '../guards/jwt-authentication.guard';
 
 @Controller()
 export class AuthController {
@@ -52,11 +52,9 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthenticationGuard)
-  @Get('get-user')
-  getUser(@Req() request: RequestWithUser) {
-    const user = request.user;
-    user.password = undefined;
-    return user;
+  @Get('is-authenticated')
+  isAuthenticated(@Res() response: Response) {
+    return response.sendStatus(200);
   }
 
   @UseGuards(JwtRefreshGuard)

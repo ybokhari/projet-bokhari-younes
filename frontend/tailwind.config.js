@@ -5,12 +5,12 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        monchenil: {
-          primary: "#00bd70",
+        taslimbaby: {
+          primary: "#f97316",
           "primary-content": "#ffffff",
-          secondary: "#00ABFF",
-          accent: "#FF6254",
-          neutral: "#2b3440",
+          secondary: "#F14D5F",
+          accent: "#C24B8A",
+          neutral: "#2F4858",
           "base-100": "#ffffff",
         },
       },
