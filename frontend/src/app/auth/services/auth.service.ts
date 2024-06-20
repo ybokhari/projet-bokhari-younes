@@ -38,6 +38,12 @@ export class AuthService {
   }
 
   signOut(userId: number): Observable<any> {
-    return this.http.post(environment.signOut, { userId: userId });
+    return this.http.post(
+      environment.signOut,
+      {
+        userId: userId,
+      },
+      { responseType: 'text' }
+    );
   }
 }

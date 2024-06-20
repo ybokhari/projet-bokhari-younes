@@ -1,1 +1,18 @@
-<p>products-card works!</p>
+<div class="card bg-base-100 shadow-md">
+    <div class="card-body flex-row justify-between gap-4 p-6">
+        <header class="card-title grow flex-col items-start justify-between">
+            <h2>
+                {{ product.name }}
+            </h2>
+            <p>
+                {{ product.price | currency: 'EUR' }}
+            </p>
+            <p class="text-sm">
+                {{ product.description }}
+            </p>
+        </header>
+        <div class="card-actions self-end">
+            <add-to-cart-btn [product]="product" (productAdded)="productAdded.emit($event)"></add-to-cart-btn>
+        </div>
+    </div>
+</div>

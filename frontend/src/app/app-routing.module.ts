@@ -5,6 +5,7 @@ import { SignUpComponent } from './auth/pages/sign-up/sign-up.component';
 import { IsAuthenticatedComponent } from './auth/pages/is-authenticated/is-authenticated.component';
 import { ProductsPageComponent } from './products/pages/products-page/products-page.component';
 import { isAuthenticatedGuard } from './auth/guards/is-authenticated.guard';
+import { SignOutComponent } from './auth/components/sign-out/sign-out.component';
 
 const routes: Routes = [
   {
@@ -13,12 +14,16 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'sign-up',
+    component: SignUpComponent,
+  },
+  {
     path: 'sign-in',
     component: SignInComponent,
   },
   {
-    path: 'sign-up',
-    component: SignUpComponent,
+    path: 'sign-out',
+    component: SignOutComponent,
   },
   {
     path: 'is-authenticated',

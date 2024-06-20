@@ -32,7 +32,7 @@ export class SignInComponent {
     this.authService.signIn(this.signInForm.value).subscribe({
       next: (data) => {
         this.storageService.saveUser(data);
-        this.router.navigate(['/is-authenticated']);
+        this.router.navigate(['/products']);
       },
       error: (error) => {
         this.signInForm.setErrors({ wrongCredentials: true });
