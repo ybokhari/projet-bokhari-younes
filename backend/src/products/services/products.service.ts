@@ -10,7 +10,16 @@ export class ProductsService {
     private readonly productRepository: Repository<Product>,
   ) {}
 
-  async findAll(): Promise<Product[]> {
-    return await this.productRepository.find();
+  async findAll(searchTerm?: string): Promise<Product[]> {
+    if (searchTerm) {
+      return await this.productRepository
+        .createQueryBuilder('product')
+        .where('product.name LIKE :searchTerm', {
+          searchTerm: `%${searchTerm}%`,
+        })
+        .getMany();
+    } else {
+      return await this.productRepository.find();
+    }
   }
 }

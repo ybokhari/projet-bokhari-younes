@@ -1,4 +1,4 @@
 <div class="flex gap-8 max-lg:flex-col-reverse">
-    <products-list [products]="products$ | async" (productAdded)="addToCart($event)" (productSearched)="filterProducts($event)"></products-list>
+    <products-list [products]="products$ | async" (productAdded)="addToCart($event)" (searchTerm)="refresh($event)"></products-list>
     <cart-list [productsAdded]="productsAdded"></cart-list>
 </div>

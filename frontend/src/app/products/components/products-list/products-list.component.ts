@@ -9,11 +9,10 @@ import { FormControl } from '@angular/forms';
 export class ProductsListComponent {
   @Input() declare products: Product[] | null;
   @Output() productAdded = new EventEmitter();
-  @Output() productSearched = new EventEmitter();
-  searchProduct: FormControl = new FormControl('');
+  @Output() searchTerm = new EventEmitter();
   term = new FormControl('');
 
-  filtersProducts() {
-    this.productSearched.emit(this.term.value);
+  searchProduct() {
+    this.searchTerm.emit(this.term.value);
   }
 }

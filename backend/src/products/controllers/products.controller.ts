@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import JwtAuthenticationGuard from 'src/auth/guards/jwt-authentication.guard';
 import { ProductsService } from 'src/products/services/products.service';
 
@@ -8,7 +8,7 @@ export class ProductsController {
 
   @UseGuards(JwtAuthenticationGuard)
   @Get()
-  findAll() {
-    return this.productsService.findAll();
+  async findAll(@Query('searchTerm') searchTerm: string) {
+    return this.productsService.findAll(searchTerm);
   }
 }

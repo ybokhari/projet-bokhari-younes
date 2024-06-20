@@ -10,9 +10,9 @@ import { Product } from '../../models/product';
 export class ProductsPageComponent {
   constructor(private productsService: ProductsService) {}
 
-  refresh$ = new BehaviorSubject(null);
-  products$ = this.refresh$.pipe(
-    switchMap(() => this.productsService.getProducts())
+  searchTerm$ = new BehaviorSubject('');
+  products$ = this.searchTerm$.pipe(
+    switchMap((searchTerm) => this.productsService.getProducts(searchTerm))
   );
   productsAdded: Product[] = [];
 
@@ -26,16 +26,7 @@ export class ProductsPageComponent {
     }
   }
 
-  refresh() {
-    this.refresh$.next(null);
-  }
-  filtersProducts() {
-    this.refresh();
-    if (!this.products$) return;
-    this.products$ = this.products$?.filter((product) =>
-      product.name
-        .toLowerCase()
-        .includes(this.searchProduct.value.toLowerCase())
-    );
+  refresh(searchTerm: string) {
+    this.searchTerm$.next(searchTerm);
   }
 }
