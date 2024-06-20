@@ -13,7 +13,7 @@ import { ProductsService } from './products/services/products.service';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'postgres://ybokhari:7hkx8bdDsDDZhp0OO2wdxyiUuEqofPvU@dpg-cpq19e88fa8c739o35k0-a/taslim_baby',
+      host: 'postgres://ybokhari:7hkx8bdDsDDZhp0OO2wdxyiUuEqofPvU@dpg-cpq19e88fa8c739o35k0-a.frankfurt-postgres.render.com/taslim_baby',
       port: 5432,
       username: 'ybokhari',
       password: '7hkx8bdDsDDZhp0OO2wdxyiUuEqofPvU',
