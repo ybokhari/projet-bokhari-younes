@@ -16,7 +16,7 @@ import { ProductsService } from './products/services/products.service';
       host: 'postgres://ybokhari:7hkx8bdDsDDZhp0OO2wdxyiUuEqofPvU@dpg-cpq19e88fa8c739o35k0-a/taslim_baby',
       port: 5432,
       username: 'ybokhari',
-      password: 'Younes#67',
+      password: '7hkx8bdDsDDZhp0OO2wdxyiUuEqofPvU',
       database: 'taslim_baby',
       entities: ['dist/**/*.entity.js'],
       synchronize: true,
