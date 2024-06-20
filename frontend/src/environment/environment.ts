@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   signUp: '/api/sign-up',
   signIn: '/api/sign-in',
   isAuthenticated: '/api/is-authenticated',
