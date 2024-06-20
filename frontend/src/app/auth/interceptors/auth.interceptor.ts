@@ -4,11 +4,9 @@ import {
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
-  HTTP_INTERCEPTORS,
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
-import { StorageService } from '../services/storage.service';
 import { AuthService } from '../services/auth.service';
 import { EventBusService } from '../../shared/services/event-bus.service';
 import { EventData } from '../../shared/class/event.class';
@@ -20,7 +18,6 @@ export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
 
   constructor(
-    private storageService: StorageService,
     private authService: AuthService,
     private eventBusService: EventBusService
   ) {}
@@ -49,7 +46,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (!this.isRefreshing) {
       this.isRefreshing = true;
 
-      if (this.storageService.isSignedIn()) {
+      if (this.authService.isAuthenticated()) {
         return this.authService.refreshToken().pipe(
           switchMap(() => {
             this.isRefreshing = false;
