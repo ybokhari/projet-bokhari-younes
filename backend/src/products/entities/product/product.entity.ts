@@ -11,6 +11,6 @@ export class Product {
   @Column({ type: 'int' })
   price: number;
 
-  @Column({ type: 'tinytext' })
+  @Column({ type: 'text' })
   description: string;
 }

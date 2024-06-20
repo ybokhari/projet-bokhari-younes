@@ -11,9 +11,9 @@ import * as Joi from 'joi';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'postgres',
       host: 'localhost',
-      port: 3306,
+      port: 5432,
       username: 'ybokhari',
       password: 'Younes#67',
       database: 'taslim_baby',
